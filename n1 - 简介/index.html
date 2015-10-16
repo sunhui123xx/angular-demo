@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8" />
+	<title>AngularJS 指令</title>
+	<script src="../angular.min.js"></script>
+</head>
+<body>
+	<!--
+		* AngularJS 通过 ng-directives 扩展了 HTML。
+		* ng-app 指令定义一个 AngularJS 应用程序。
+		* ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+		* ng-bind 指令把应用程序数据绑定到 HTML 视图。
+		* ng-init 指令初始化 AngularJS 应用程序变量。
+	-->
+	<div ng-init="firstName='John'">
+		<p>输入</p>
+		<p>
+			name: 
+			<input type="text" ng-model="name" />
+		</p>
+		<p ng-bind="name"></p>
+		<p>
+			firstName: 
+			<span ng-bind="firstName"></span>
+		</p>
+	</div>
+	<p style="color:green">
+		实例讲解：
+		<br />
+		当网页加载完毕，AngularJS 自动开启。
+		ng-app 指令告诉 AngularJS， 元素是 AngularJS 应用程序 的"所有者"。
+		ng-model 指令把输入域的值绑定到应用程序变量 name。
+		ng-bind 指令把应用程序变量 name 绑定到某个段落的 innerHTML。
+	</p>
+</body>
+</html>

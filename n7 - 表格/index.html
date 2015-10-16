@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 表格</title>
+		<script src="../angular.min.js"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+			}
+			div{
+				padding: 10px;
+				border: 1px solid blue;
+				margin-bottom: 10px;
+			}
+			.green{
+				color: green;
+			}
+			ul, li{
+				list-style: none;
+			}
+			table, th , td {
+			    border: 1px solid grey;
+			    border-collapse: collapse;
+			  	padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  	background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  	background-color: #ffffff;
+			}
+		</style>
+	</head>
+	<body ng-app="myApp">
+		<div ng-controller="customersCtrl">
+			<h3>
+				在表格中显示数据 
+				<br />
+				使用 uppercase 过滤器
+				<br />
+				使用 orderBy 过滤器
+			</h3>
+			<table>
+				<tr ng-repeat="x in names | orderBy : 'Country'">
+					<td>{{x.Name}}</td>
+					<td>{{x.Country | uppercase}}</td>
+				</tr>
+			</table>
+		</div>
+		<div ng-controller="customersCtrl">
+			<h3>使用 filter 过滤器</h3>
+			<p><input type="text" ng-model="filter"></p>
+			<table>
+				<tr ng-repeat="x in names | filter:filter |orderBy: 'Name'">
+					<td> {{ (x.Name | uppercase) + ', ' + x.Country }}</td>
+					<!--<td>{{x.Name}}</td>
+					<td>{{x.Country}}</td>-->
+				</tr>
+			</table>
+			<ul>
+			    <li ng-repeat="x in names | filter:filter | orderBy:'Name'">
+			       
+			    </li>
+			</ul>
+		</div>
+		<div ng-controller="customersCtrl">
+			<h3>显示序号 ($index)</h3>
+			<table>
+				<tr ng-repeat="x in names | orderBy: 'Name'">
+					<td>{{$index + 1}}</td>
+					<td>{{x.Name}}</td>
+					<td>{{x.Country}}</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<h3>使用 $even 和 $odd</h3>
+			<table ng-controller="customersCtrl">
+				<tr ng-repeat="x in names">
+					<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Name }}</td>
+					<td ng-if="$even">{{ x.Name }}</td>
+					<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Country }}</td>
+					<td ng-if="$even">{{ x.Country }}</td>
+				</tr>
+			</table>
+		</div>
+		<script>
+			var app = angular.module('myApp',[]);
+			app.controller('customersCtrl', function($scope, $http){
+				
+				$http.get('/angularjs/Customers_JSON.json')
+				.success(function(response){
+					$scope.names = response[0].records;
+				})
+			})
+		</script>
+	</body>
+</html>

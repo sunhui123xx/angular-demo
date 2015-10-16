@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 控制器</title>
+		<script src="../angular.min.js"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+			}
+			div{
+				padding-left: 10px;
+				border: 1px solid blue;
+				margin-bottom: 10px;
+			}
+			.green{
+				color: green;
+			}
+			ul, li{
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<p>AngularJS 控制器 控制 AngularJS 应用程序的数据。</p>
+			<p>AngularJS 控制器是常规的 JavaScript 对象。</p>
+			<p>ng-controller 指令定义了应用程序控制器。</p>
+			<p>控制器是 JavaScript 对象，由标准的 JavaScript 对象的构造函数 创建。</p>
+			<p>控制器的 $scope 是控制器所指向的应用程序 HTML 元素。</p>
+		</div>
+		<div ng-controller="personController">
+			<h4>1. 控制器</h4>
+			名：<input type="text" ng-model="person.firstName" />
+			<br />
+			姓：<input type="text" ng-model="person.lastName" />
+			<br />
+			<br />
+			姓名：{{person.lastName + person.firstName}}
+			<br />
+			<br />
+			<p class="green">
+				实例讲解：
+				<br />
+				AngularJS 应用程序由 ng-app 定义。应用程序在div内运行。
+				<br />
+				ng-controller 指令把控制器命名为 object。
+				<br />
+				函数 personController 是一个标准的 JavaScript 对象的构造函数。
+				<br />
+				控制器对象有一个属性：$scope.person。
+				<br />
+				person 对象有两个属性：firstName 和 lastName。
+				<br />
+				ng-model 指令绑定输入域到控制器的属性（firstName 和 lastName）。
+			</p>
+		</div>
+		<div ng-controller="personController">
+			<h4>2. 控制器属性</h4>
+			<p>控制器也可以把函数作为对象属性：<small>{{person. <strong>fullName()</strong>}</small></p>
+			名：<input type="text" ng-model="person.firstName" />
+			<br />
+			姓：<input type="text" ng-model="person.lastName" />
+			<br />
+			<br />
+			姓名：{{person.fullName()}}
+			<br />
+			<br />
+		</div>
+		<div ng-controller="personController">
+			<h4>3. 控制器方法</h4>
+			名：<input type="text" ng-model="person.firstName" />
+			<br />
+			姓：<input type="text" ng-model="person.lastName" />
+			<br />
+			<br />
+			姓名：{{fullName()}}
+			<br />
+			<br />
+		</div>
+		<div ng-controller="namesController">
+			<h4>4. 控制器ng-repeat</h4>
+			<ul>
+				<li ng-repeat="x in names">
+					{{x.name + ' ' + x.country}}
+				</li>
+			</ul>
+		</div>
+		<script src="../personController.js"></script>
+		<script src="../namesController.js"></script>
+	</body>
+</html>

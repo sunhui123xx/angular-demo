@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app >
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 过滤器</title>
+		<script src="../angular.min.js"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+			}
+			div{
+				padding-left: 10px;
+				border: 1px solid blue;
+				margin-bottom: 10px;
+			}
+			.green{
+				color: green;
+			}
+			ul, li{
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<p>过滤器可以使用一个管道字符（|）添加到表达式和指令中。</p>
+			<img src="1.png"/>
+		</div>
+		<div ng-controller="personController">
+			<h4>向表达式添加过滤器 <small><i>uppercase: 格式化字符串为大写。</i></small></h4>
+			<p>姓名为 {{ person.lastNameEn | uppercase }}</p>
+		</div>
+		<div ng-controller="personController"">
+			<h4>lowercase 过滤器格式化字符串为小写：</h4>
+			<p>姓名为 {{ person.lastNameEn | lowercase }}</p>
+		</div>
+		<div ng-controller="costController">
+			<h4>currency 过滤器 <small><i>currency: 化数字为货币格式</i></small></h4>
+			数量：<input type="number" ng-model="quantity" />	
+			价格：<input type="number" ng-model="price" />	
+			<br />
+			<br />
+			总价：{{quantity * price | currency}}
+			<br />
+			<br />
+		</div>
+		<div ng-controller="namesController">
+			<h4>向指令添加过滤器</h4>
+			<p>
+				过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中。
+				<br />
+				orderBy 过滤器根据某个表达式排列数组：
+			</p>
+			<ul>
+				<li ng-repeat="x in names | orderBy:'country'">
+					{{x.name + ', ' + x.country}}
+				</li>
+			</ul>
+		</div>
+		<div ng-controller="namesController">
+			<h4>过滤输入</h4>
+			<p>
+				输入过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中，该过滤器后跟一个冒号和一个模型名称。
+				<br />
+				filter 过滤器从数组中选择一个子集：
+			</p>
+			<p>输入过滤：</p>
+			<input type="text" ng-model="name"/>
+			<ul>
+				<li ng-repeat="x in names | filter:name | orderBy:'country'">
+					{{(x.name | uppercase) + ', ' + x.country}}
+				</li>
+			</ul>
+		</div>
+		<script src="../personController.js"></script>
+		<script src="../namesController.js"></script>
+		<script src="../costController.js"></script>
+	</body>
+</html>

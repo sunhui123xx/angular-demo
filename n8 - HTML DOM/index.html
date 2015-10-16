@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 表格</title>
+		<script src="../angular.min.js"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+			}
+			div{
+				padding: 10px;
+				border: 1px solid blue;
+				margin-bottom: 10px;
+			}
+			.green{
+				color: green;
+			}
+			ul, li{
+				list-style: none;
+			}
+			table, th , td {
+			    border: 1px solid grey;
+			    border-collapse: collapse;
+			  	padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  	background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  	background-color: #ffffff;
+			}
+		</style>
+	</head>
+	<body ng-app>
+		<div>
+			<h3>ng-disabled 指令</h3>
+			<p>
+				<button ng-disabled="mySwitch">点我！</button>
+			</p>
+			
+			<p>
+				<input type="checkbox" ng-model="mySwitch">按钮
+			</p>
+			实例讲解：
+			<br />
+			ng-disabled 指令绑定应用程序数据 "mySwitch" 到 HTML 的 disabled 属性。
+			<br />
+			ng-model 指令绑定 "mySwitch" 到 HTML input checkbox 元素的内容（value）。
+			<br />
+			如果 mySwitch 为true, 按钮将不可用: 
+		</div>
+		<div>
+			<h3>ng-show 指令</h3>
+			<p ng-show="true">我是可见的。</p>
+
+			<p ng-show="false">我是不可见的。</p>
+			
+			ng-show 指令根据 value 的值来显示（隐藏）HTML 元素。
+			<br />
+			你可以使用表达式来计算布尔值（ true 或 false）:
+		</div>
+		<div>
+			<h3>ng-hide 指令</h3>
+			<p ng-hide="true">我是不可见的。</p>
+			<p ng-hide="false">我是可见的。</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 事件</title>
+		<script src="../angular.min.js"></script>
+		<style type="text/css">
+			*{
+				padding: 0;
+			}
+			div{
+				padding: 10px;
+				border: 1px solid blue;
+				margin-bottom: 10px;
+			}
+			.green{
+				color: green;
+			}
+			ul, li{
+				list-style: none;
+			}
+			table, th , td {
+			    border: 1px solid grey;
+			    border-collapse: collapse;
+			  	padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  	background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  	background-color: #ffffff;
+			}
+		</style>
+	</head>
+	<body ng-app="myApp">
+		<div>
+			<h3>
+				ng-click 指令
+				<small>(ng-click 指令定义了 AngularJS 点击事件。)</small>
+			</h3>
+			<button ng-click="count = count + 1">点我！</button>
+			<p>{{ count }}</p>
+		</div>
+		<div ng-controller="personCtrl">
+			<h3>隐藏 HTML 元素</h3>
+			<button ng-click="toggle()">隐藏/显示</button>
+			<p ng-hide="myVar">
+				姓: <input type="text" ng-model="firstName"><br>
+				名: <input type="text" ng-model="lastName"><br>
+				<br>
+				Full Name: {{firstName + " " + lastName}}
+			</p>
+		</div>
+		<div ng-controller="personCtrl">
+			<h3>显示 HTML 元素</h3>
+			<button ng-click="toggle()">显示/隐藏</button>
+			<p ng-show="myVar">
+				姓: <input type="text" ng-model="firstName"><br>
+				名: <input type="text" ng-model="lastName"><br>
+				<br>
+				Full Name: {{firstName + " " + lastName}}
+			</p>
+		</div>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('personCtrl', function($scope){
+				$scope.firstName = 'sun';
+				$scope.lastName = 'hui';
+				$scope.myVar = true;
+				$scope.toggle = function() {
+			        $scope.myVar = !$scope.myVar;
+			    };
+			});
+		</script>
+	</body>
+</html>
